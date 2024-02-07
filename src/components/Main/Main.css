@@ -1,0 +1,33 @@
+.content {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.main__title {
+    color: #000;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.88px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.main__line {
+    margin-top: 23px;
+    min-height: 1px;
+    width: 100%;
+    background-color: #000;
+}
+
+@media (max-width: 767px) {
+    .main__title {
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.72px;
+    }
+    .main__line {
+        margin-top: 28px;
+    }
+}

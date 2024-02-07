@@ -1,0 +1,139 @@
+.about {
+    padding: 110px 70px;
+}
+
+.about__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 70px;
+    column-gap: 40px;
+}
+
+.about__column {
+    display: flex;
+    flex-direction: column;
+    row-gap: 26px;
+}
+
+.about__subtitle {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+}
+
+.about__description {
+    margin-top: 0;
+    margin-bottom: 110px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.term__table {
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    justify-content: center;
+}
+
+.term__column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.term__line {
+    display: flex;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+}
+
+.term__line_black {
+    background-color: black;
+    color: white;
+}
+
+.term__line_grey {
+    background-color: #F2F2F2;
+}
+
+.term__title {
+    font-size: 14px;
+    font-weight: 400;
+    min-height: 18px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.term__description {
+    color: #A0A0A0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    margin-top: 14px;
+}
+
+@media (max-width: 1279px) {
+    .about {
+        padding: 90px 50px;
+    }
+    .about__row {
+        column-gap: 30px;
+    }
+    .about__column {
+        row-gap: 22px;
+    }
+    .about__description {
+        margin-bottom: 93px;
+    }
+    .term__table {
+        grid-template-columns: 140px calc(100% - 140px);
+    }
+}
+
+@media (max-width: 767px) {
+    .about {
+        padding: 70px 18px 69px;
+    }
+    .about__row {
+        margin-top: 70px;
+        flex-direction: column;
+        row-gap: 56px;
+    }
+    .about__column {
+        row-gap: 16px;
+    }
+    .about__column:last-of-type {
+        margin-bottom: 60px;
+    }
+    .about__subtitle {
+        font-size: 18px;
+        letter-spacing: -0.72px;
+    }
+    .about__description {
+        font-size: 11px;
+        line-height: 16px;
+        margin-bottom: 0;
+    }
+    .term__table {
+        grid-template-columns: 100px calc(100% - 100px);
+    }
+    .term__line {
+        min-height: 35px;
+    }
+    .term__title {
+        font-size: 11px;
+        line-height: 13px; 
+    }
+    .term__description {
+        font-size: 11px;
+        line-height: 13px;
+        margin-top: 10px
+    }
+}

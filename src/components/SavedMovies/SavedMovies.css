@@ -1,0 +1,29 @@
+.saved {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 70px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: Inter;
+}
+
+.saved-movies__more {
+    /* display: none; */
+    display: flex;
+    margin: 50px auto 80px;
+    min-width: 320px;
+    min-height: 36px;
+    border-radius: 6px;
+    background: #F9F9F9;
+    padding: 11px 60px 9px 60px;
+    border: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+}
+
+.saved-movies__more:hover {
+    opacity: 0.8;
+}

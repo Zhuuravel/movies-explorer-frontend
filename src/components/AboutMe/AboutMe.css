@@ -1,0 +1,122 @@
+.me {
+    padding: 110px 70px 100px;
+}
+
+.me__row {
+    margin-top: 66px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    column-gap: 270px;
+}
+
+.me__column {
+    display: flex;
+    flex-direction: column;
+}
+
+.me__name {
+    margin: 0;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+    letter-spacing: -2px;
+}
+
+.me__speciality {
+    margin: 18px 0 26px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.me__description {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.me__link {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    font-weight: 400;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+}
+
+.me__link:hover {
+    opacity: 0.7;
+}
+
+.me__photo {
+    min-width: 270px;
+    max-height: 327px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+@media (max-width: 1279px) {
+    .me {
+        padding: 90px 50px;
+    }
+    .me__row {
+        column-gap: 49px;
+    }
+    .me__name {
+        font-size: 40px;
+        line-height: 40px;
+        letter-spacing: -1.6px;
+    }
+    .me__speciality {
+        margin: 16px 0 20px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .me__description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .me__photo {
+        min-width: 255px;
+        max-height: 307px;
+    }
+}
+
+@media (max-width: 767px) {
+    .me {
+        padding: 70px 14px;
+    }
+    .me__row {
+        margin-top: 60px;
+        flex-direction: column-reverse;
+        row-gap: 40px;
+    }
+    .me__column {
+        width: 100%;
+    }
+    .me__name {
+        font-size: 30px;
+        line-height: 36px;
+        letter-spacing: -1.2px;
+    }
+    .me__speciality {
+        margin: 20px 0 20px;
+        font-size: 11px;
+        line-height: 16px;
+    }
+    .me__description {
+        font-size: 11px;
+        line-height: 16px;
+        margin-bottom: 40px;
+    }
+    .me__photo {
+        min-width: 292px;
+        max-height: 352px;
+    }
+    .me__link {
+        position: relative;
+    }
+}
