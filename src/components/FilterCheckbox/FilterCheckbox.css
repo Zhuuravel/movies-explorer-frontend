@@ -23,6 +23,11 @@
     height: 0;
   }
 
+  .checkbox__input:focus {
+    outline: none;
+    font-family: inherit;
+}
+
 .checkbox__label {
     display: inline-block;
   }
@@ -87,6 +92,7 @@
 
 @media (max-width: 767px) {
     .checkbox {
+        padding: 0;
         position: absolute;
         top: 118px;
         left: calc((100% - 147px)/2);

@@ -4,8 +4,8 @@ import './AboutProject.css'
 function AboutProject() {
     return (
         <section className="about" id="about-project">
-            <h2 className="main__title">О проекте</h2>
-            <div className="main__line"></div>
+            <h2 className="about__title">О проекте</h2>
+            <div className="about__line"></div>
             <ul className="about__row">
                 <li className="about__column">
                     <h3 className="about__subtitle">Дипломный проект включал 5 этапов</h3>
@@ -16,7 +16,7 @@ function AboutProject() {
                     <p className="about__description">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
                 </li>
             </ul>
-            <div className="term__table">
+            <div className="term">
                 <div className="term__line term__line_black">
                     <h3 className="term__title">1 неделя</h3>
                 </div>

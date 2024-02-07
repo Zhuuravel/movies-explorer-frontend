@@ -143,4 +143,12 @@
         max-width: 240px;
         font-size: 12px;
     }
+    .card__save-button {
+        top: 10px;
+        right: 10px;
+    }
+    .card__delete-button {
+        top: 10px;
+        right: 10px;
+    }
 }

@@ -8,7 +8,7 @@
     font-family: Inter;
 }
 
-.saved-movies__more {
+.saved__more {
     /* display: none; */
     display: flex;
     margin: 50px auto 80px;
@@ -24,6 +24,6 @@
     justify-content: center;
 }
 
-.saved-movies__more:hover {
+.saved__more:hover {
     opacity: 0.8;
 }

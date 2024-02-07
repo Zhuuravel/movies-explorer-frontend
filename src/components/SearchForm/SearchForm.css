@@ -33,6 +33,7 @@
 }
 
 .search__input {
+    padding: 0;
     border: 0;
     font-size: 18px;
     font-weight: 400;
@@ -41,7 +42,7 @@
 }
 
 .search__input:focus {
-    outline: none;
+    outline: 2px solid #F3C1F8;
     font-family: inherit;
 }
 
@@ -67,6 +68,11 @@
     line-height: 18px;
     margin-left: 21.35px;
     right: 0;
+    cursor: pointer;
+}
+
+.search__button:hover {
+    opacity: 0.8;
 }
 
 .search__underline {
@@ -90,5 +96,10 @@
     }
     .search__input {
         font-size: 14px;
+        max-height: 22px;
+        align-self: center;
+    }
+    .search__icon {
+        display: none;
     }
 }

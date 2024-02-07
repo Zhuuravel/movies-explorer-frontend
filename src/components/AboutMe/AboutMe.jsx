@@ -5,8 +5,8 @@ import './AboutMe.css'
 function AboutMe() {
     return (
         <section className="me" id="me">
-            <h2 className="main__title">Студент</h2>
-            <div className="main__line"></div>
+            <h2 className="me__title">Студент</h2>
+            <div className="me__line"></div>
             <div className="me__row">
                 <div className="me__column">
                     <h3 className="me__name">Лиза</h3>

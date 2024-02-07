@@ -2,6 +2,23 @@
     padding: 110px 70px 100px;
 }
 
+.me__title {
+    color: #000;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.88px;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.me__line {
+    margin-top: 23px;
+    min-height: 1px;
+    width: 100%;
+    background-color: #000;
+}
+
 .me__row {
     margin-top: 66px;
     display: flex;
@@ -88,6 +105,14 @@
 @media (max-width: 767px) {
     .me {
         padding: 70px 14px;
+    }
+    .me__title {
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: -0.72px;
+    }
+    .me__line {
+        margin-top: 28px;
     }
     .me__row {
         margin-top: 60px;

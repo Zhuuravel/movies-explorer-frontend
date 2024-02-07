@@ -1,8 +1,8 @@
-.content-login {
+.auth {
     margin: 0 auto;
 }
 
-.auth {
+.auth__form {
     margin: 0 auto;
     max-width: 396px;
     min-height: calc(100vh - 148px);
@@ -54,7 +54,7 @@
 }
 
 .auth__input:focus {
-    outline: none;
+    outline: 2px solid #F3C1F8;
     font-family: Inter;
     font-size: 13px;
     font-weight: 500;
@@ -125,7 +125,7 @@
 } */
 
 @media (max-width: 1279px) {
-    .auth {
+    .auth__form {
         min-height: calc(100vh - 310px);
     }
 }
@@ -135,10 +135,10 @@
         margin-bottom: 80px;
         text-align: center;
     }
-    .content-login {
+    .auth {
         padding: 0 30px;
     }
-    .auth {
+    .auth__form {
         width: 100%;
         min-height: calc(100vh - 144px);
     }

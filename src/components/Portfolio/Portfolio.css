@@ -21,7 +21,6 @@
 
 .portfolio__element {
     padding-top: 20px;
-    padding-bottom: 19px;
 }
 
 .portfolio__link {
@@ -43,19 +42,18 @@
     font-weight: 400;
     line-height: 50px;
     letter-spacing: -1.2px;
+    padding-bottom: 19px;
 }
 
 .portfolio__arrow {
+    background-image: url('../../images/link-icon.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     margin: 0;
-    color: black;
     min-width: 29px;
     min-height: 60px;
     font-size: 30px;
-    font-weight: 400;
-    line-height: 60px;
-    letter-spacing: -1.2px;
-    text-align: center;
-
 }
 
 .portfolio__line {
@@ -73,8 +71,7 @@
         letter-spacing: -1.12px;
     }
     .portfolio__arrow {
-        font-size: 28px;
-        letter-spacing: -1.12px;
+        min-width: 27px;
     }
 }
 
@@ -95,9 +92,8 @@
         letter-spacing: -0.72px;
     }
     .portfolio__arrow {
-        font-size: 18px;
-        line-height: 28px;
+        min-width: 18px;
         min-height: 28px;
-        letter-spacing: -0.72px;
+        padding-bottom: 19px;
     }
 }

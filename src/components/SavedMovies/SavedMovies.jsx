@@ -11,7 +11,7 @@ function SavedMovies() {
             <SearchForm />
             <Preloader />
             <MoviesCardList savedMovies/>
-            <button className="saved-movies__more">Ещё</button>
+            <button className="saved__more">Ещё</button>
         </main>
     )
 }

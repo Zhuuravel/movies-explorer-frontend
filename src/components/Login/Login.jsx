@@ -5,8 +5,8 @@ const errorInput = false;
 
 function Login({title, button, text, link, route, children}) {
     return (
-        <main className="content-login">
-            <form className="auth" name="info-register">
+        <main className="auth">
+            <form className="auth__form" name="info-register">
                 <fieldset className="auth__fieldset">
                     <h2 className="auth__title">{title}</h2>
                     {children}

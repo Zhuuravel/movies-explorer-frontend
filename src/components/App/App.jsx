@@ -82,14 +82,6 @@ function App() {
                     }
                 />
             </Routes>
-            {/* <Header />
-            <Main />
-            <Movies />
-            <SavedMovies />
-            <Footer />
-            <Profile title={`Привет, ${YourName}`}/>
-            <Login title="Рады видеть!" button="Войти" text="Уже зарегистрированы?" link="Войти"/>
-            <Register title="Добро пожаловать!" button="Зарегистрироваться" text="Ещё не зарегистрированы?" link="Регистрация"/> */}
         </div>
     )
 }

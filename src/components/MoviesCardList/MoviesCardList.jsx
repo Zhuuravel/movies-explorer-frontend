@@ -33,7 +33,7 @@ const initialCards = [
 function MoviesCardList({savedMovies}) {
     return (
         <section className="cards">
-            <ul className="card__list">
+            <ul className="cards__list">
                 {initialCards.map((item) => {
                     return (
                         <MoviesCard 

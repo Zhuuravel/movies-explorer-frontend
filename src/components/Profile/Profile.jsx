@@ -9,9 +9,9 @@ const editProfile = true;
 
 function Profile({title}) {
     return (
-        <main className="content-profile">
+        <main className="profile">
             <h2 className="profile__title">{title}</h2>
-            <form className="profile" name="info-register">
+            <form className="profile__form" name="info-register">
                 <fieldset className="profile__fieldset">
                     <label htmlFor="input-name" className="profile__form-field">Имя
                         <input type="text" className="profile__input profile__input_name" id="input-name" name="name" value={nameValue}

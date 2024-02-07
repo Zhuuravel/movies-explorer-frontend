@@ -13,13 +13,13 @@
     object-fit: cover;
 }
 
-.header__logo-link {
+.header__link {
     max-height: 38px;
     min-width: 38px;
     align-self: center;
 }
 
-.header__logo-link:hover {
+.header__link:hover {
     opacity: 0.7;
 }
 
