@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     background: #F3C1F8;
-    min-height: calc(100vh - 74px - 66px);
+    min-height: 524px;
     position: relative;
 }
 
