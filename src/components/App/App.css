@@ -1,0 +1,13 @@
+@import '../../vendor/normalize.css';
+@import '../../vendor/inter/inter.css';
+
+.root {
+    min-height: 100vh;
+    min-width: 320px;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #FFF;
+    color: #000;
+}
