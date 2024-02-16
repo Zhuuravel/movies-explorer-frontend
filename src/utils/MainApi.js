@@ -1,5 +1,5 @@
 const optionsApi = {
-    url: 'http://localhost:3000'
+    url: 'https://api.movies.zhuuravel.nomoredomainsmonster.ru'
 }
 
 class MainApi {
