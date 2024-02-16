@@ -1,14 +1,36 @@
-import Login from '../Login/Login';
 import React from 'react';
+import useFormValidation from "../../hooks/useFormValidation";
+import AuthForm from '../AuthForm/AuthForm';
 
-function Register({title, button, text, link, route}) {
+const errorInput = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
+
+function Register({onLoading, title, text, link, handleRegistration, route}) {
+
+    const { values, errors, isValid, onChange } = useFormValidation();
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        handleRegistration(values);
+    }
+
     return (
-        <Login title={title} button={button} text={text} link={link} route="/signin">
+        <AuthForm 
+        title ={title}
+        button={onLoading ? "Регистрация ..." : "Зарегестрироваться"}
+        text={text}
+        link={link}
+        route={route}
+        handleSubmit={handleSubmit}
+        values={values}
+        errors={errors}
+        isValid={isValid}
+        onChange={onChange}
+        >
             <label htmlFor="input-name" className="auth__form-field">Имя
-                <input type="name" className="auth__input auth__input_name" id="input-name" name="name"
-                minLength="2" maxLength="200" required/>
+                <input type="name" className={`auth__input auth__input_name ${errors.name && "auth__input_type_error"}`} id="input-name" name="name" value={values.name || ""} onChange={onChange}
+                minLength="2" maxLength="200" pattern={errorInput} required/>
             </label>
-        </Login>
+        </AuthForm>
     )
 }
 

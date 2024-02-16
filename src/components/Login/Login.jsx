@@ -1,31 +1,29 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import './Login.css';
-const errorInput = false;
+import useFormValidation from "../../hooks/useFormValidation";
+import AuthForm from '../AuthForm/AuthForm';
 
-function Login({title, button, text, link, route, children}) {
+function Login({onLoading, title, text, link, route, handleLogin}) {
+
+    const { values, errors, isValid, onChange } = useFormValidation();
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        handleLogin(values);
+    }
+
     return (
-        <main className="auth">
-            <form className="auth__form" name="info-register">
-                <fieldset className="auth__fieldset">
-                    <h2 className="auth__title">{title}</h2>
-                    {children}
-                    <label htmlFor="input-email" className="auth__form-field">E-mail
-                        <input type="email" className="auth__input auth__input_email" id="input-email" name="email"
-                        required/>
-                    </label>
-                    <label htmlFor="input-password" className="auth__form-field">Пароль
-                        <input type="password" className="auth__input auth__input_password" id="input-password" name="password"
-                        minLength="2" maxLength="200" required/>
-                    </label>
-                    <span className={`auth__form-error ${errorInput ? "auth__form-error_active" : ""}`}>Что-то пошло не так...</span>
-                </fieldset>
-                <fieldset className="auth__fieldset">
-                    <button className={`auth__submit-button ${errorInput ? "auth__submit-button_disabled" : ""}`} aria-label={button}>{button}</button>
-                    <p className="auth__text">{text}<Link className="auth__link" to={route}>{link}</Link></p>
-                </fieldset>
-            </form>
-        </main>
+        <AuthForm 
+        title ={title}
+        button={onLoading ? "Вход ..." : "Войти"}
+        text={text}
+        link={link}
+        route={route}
+        handleSubmit={handleSubmit}
+        values={values}
+        errors={errors}
+        isValid={isValid}
+        onChange={onChange}
+        />
     )
 }
 

@@ -1,50 +1,77 @@
 import React from 'react';
-import movie1 from '../../images/movie1.png';
-import movie2 from '../../images/movie2.png';
-import movie3 from '../../images/movie3.png';
-import movie4 from '../../images/movie4.png';
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import MoviesCard from '../MoviesCard/MoviesCard';
+import { handleSavedStatus } from "../../utils/utils";
 import './MoviesCardList.css';
+import Preloader from '../Preloader/Preloader';
 
+function MoviesCardList({
+    cards,
+    savedCards,
+    renderCardsParams,
+    isCardsNotFound,
+    onCardSave,
+    onCardDelete,
+    onLoading,
+  }) {
 
-const initialCards = [
-    {
-        image: movie1,
-        title: "33 слова о дизайне",
-        duration: "1ч 17м"
-    },
-    {
-        image: movie2,
-        title: "Киноальманах «100 лет дизайна»",
-        duration: "1ч 17м"
-    },
-    {
-        image: movie3,
-        title: "В погоне за Бенкси",
-        duration: "1ч 17м"
-    },
-    {
-        image: movie4,
-        title: "Баския: Взрыв реальности",
-        duration: "1ч 17м"
-    },
-]
+    const [renderCards, setRenderCards] = useState([]);
+    const location = useLocation();
 
-function MoviesCardList({savedMovies}) {
+    useEffect(() => {
+        if (location.pathname === "/movies" && cards.length) {
+          const result = cards.filter((card, index) => {
+            return index < renderCardsParams.total;
+          });
+          setRenderCards(result);
+        }
+      }, [location.pathname, cards, renderCardsParams]);
+
+      useEffect(() => {
+        if (location.pathname === "/saved-movies") {
+          setRenderCards(cards);
+        }
+      }, [location.pathname, cards]);
+
+      function handleMoreClick() {
+        const start = renderCards.length;
+        const end = start + renderCardsParams.more;
+        const count = cards.length - start;
+        if (count > 0) {
+          const additionalCards = cards.slice(start, end);
+          setRenderCards([...renderCards, ...additionalCards]);
+        }
+      }
+
     return (
         <section className="cards">
-            <ul className="cards__list">
-                {initialCards.map((item) => {
-                    return (
-                        <MoviesCard 
-                            image={item.image} 
-                            title={item.title} 
-                            duration={item.duration} 
-                            key={initialCards.indexOf(item)}
-                            savedMovies={savedMovies}/>
-                    )
-                })}
-            </ul>
+            {!localStorage.getItem("searchQuery") && cards.length === 0 && null}
+            {onLoading && cards.length === 0 && <Preloader />}
+            {isCardsNotFound && (
+            <p className="cards__info">Ничего не найдено</p>
+            )}
+            {cards.length !== 0 && !isCardsNotFound && (
+                <>
+                    <ul className="cards__list">
+                        {renderCards.map((card) => {
+                            return (
+                                <MoviesCard 
+                                card={card}
+                                key={card.id || card._id}
+                                isSaved={handleSavedStatus(savedCards, card)}
+                                onCardSave={onCardSave}
+                                onCardDelete={onCardDelete}/>
+                            )
+                        })
+                        }
+                    </ul>
+                    {renderCards.length >= 5 &&
+                    renderCards.length < cards.length && (
+                        <button className="cards__more" type="button" onClick={handleMoreClick}>Ещё</button>
+                    )}
+                </>
+            )}
         </section>
     )
 }
