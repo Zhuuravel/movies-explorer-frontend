@@ -11,20 +11,18 @@ class MoviesApi {
     _checkResponse(res) {
         if (res.ok) {
             return res.json();
-          }
-      
-          return Promise.reject(res);
         }
+        throw new Error('Что-то пошло не так...')
+}
 
     _request(url, options) {
         return fetch(`${this._url}${url}`, options).then(this._checkResponse)
     }
 
-    getAllCards(token) {
+    getAllCards() {
         return this._request('/beatfilm-movies', {
             method: 'GET',
             headers: {
-                // 'authorization': `Bearer ${token}`,
                 'Content-Type': "application/json",
             },
         })
