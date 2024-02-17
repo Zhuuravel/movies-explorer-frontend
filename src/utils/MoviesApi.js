@@ -24,7 +24,7 @@ class MoviesApi {
         return this._request('/beatfilm-movies', {
             method: 'GET',
             headers: {
-                'authorization': `Bearer ${token}`,
+                // 'authorization': `Bearer ${token}`,
                 'Content-Type': "application/json",
             },
         })

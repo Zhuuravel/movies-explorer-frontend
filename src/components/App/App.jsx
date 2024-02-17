@@ -154,7 +154,7 @@ function App() {
     async function handleGetAllMovies() {
         setLoading(true);
         try {
-            const moviesData = await myMoviesApi.getAllCards(currentToken);
+            const moviesData = await myMoviesApi.getAllCards();
             if (moviesData) {
             return moviesData;
             }
