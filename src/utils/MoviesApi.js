@@ -11,9 +11,9 @@ class MoviesApi {
     _checkResponse(res) {
         if (res.ok) {
             return res.json();
-        }
-        throw new Error('Что-то пошло не так...')
-}
+          }
+          return Promise.reject(`${res.status === 404 && "Страница по указанному маршруту не найдена." || res.status === 500 && "На сервере произошла ошибка." || "Что-то пошло не так..."}`);
+    }
 
     _request(url, options) {
         return fetch(`${this._url}${url}`, options).then(this._checkResponse)

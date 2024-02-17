@@ -160,7 +160,7 @@ function App() {
             }
         } catch (err) {
           console.log(err);
-          err.status === 404 ? setMessage('Страница по указанному маршруту не найдена.') : setMessage('На сервере произошла ошибка.');
+          setMessage(err);
           setIsOpen(true);
         } finally {
           setLoading(false);
