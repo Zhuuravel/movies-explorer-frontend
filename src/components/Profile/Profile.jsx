@@ -7,7 +7,7 @@ import './Profile.css';
 
 const errorInput = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
 
-function Profile({title, onUpdateUser, onLogout, onLoading, loggedIn}) {
+function Profile({title, onUpdateUser, onLogout, onLoading, isLoggedIn}) {
 
     const currentUser = useContext(CurrentUserContext);
     
@@ -15,16 +15,16 @@ function Profile({title, onUpdateUser, onLogout, onLoading, loggedIn}) {
 
     const [isSameValue, setValue] = useState(true); //то же значение введенных данных, что и исходное
     const [editProfile, setEditProfile] = useState(false); //режим редактирования профиля
-    
-    useEffect(() => {
-        currentUser.name !== values.name || currentUser.email !== values.email
-          ? setValue(false)
-          : setValue(true);
-      }, [currentUser, values]);
 
       useEffect(() => {
         resetValidation(false, currentUser);
       }, [resetValidation, currentUser]);
+
+      useEffect(() => {
+        currentUser.name !== values.name || currentUser.email !== values.email
+          ? setValue(false)
+          : setValue(true);
+      }, [currentUser, values]);
 
     const handleEditClick = () => {
         setEditProfile(!editProfile);
@@ -61,7 +61,7 @@ function Profile({title, onUpdateUser, onLogout, onLoading, loggedIn}) {
                             <span className={`profile__input-error ${errors.name && "profile__input-error_active"}`}>{`Имя: ${errors.name || ""}`}</span>
                             <span className={`profile__input-error ${errors.email && "profile__input-error_active"}`}>{`E-mail: ${errors.email || ""}`}</span>
                         </div>
-                        <button className={`profile__submit-button ${!isValid && isSameValue && "profile__submit-button_disabled"}`} aria-label="Сохранить" disabled={isValid && !isSameValue ? false : true} onClick={onUpdateUser}>{!onLoading? "Сохранить" : "Сохранение ..."}</button>
+                        <button className="profile__submit-button" aria-label="Сохранить" disabled={isValid && !isSameValue ? false : true} onClick={onUpdateUser}>{!onLoading? "Сохранить" : "Сохранение ..."}</button>
                     </>}
                 </fieldset>             
             </form>

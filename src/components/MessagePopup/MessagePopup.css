@@ -39,7 +39,6 @@
     border-radius: 10px;
     background: #FFF;
     box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
-    color: #FF4062;
     padding: 34px 36px 37px;
     box-sizing: border-box;
     max-width: 430px;
@@ -48,14 +47,21 @@
     position: relative;
 }
 
+.popup__title {
+    font-weight: 400;
+    font-size: 22px;
+}
+
+.popup__title_type_error {
+    color: #FF4062;
+}
+
 @media (max-width: 767px) {
     .popup__container {
         max-width: 282px;
         padding: 25px 22px;
     }
-}
-
-.popup__title {
-    font-weight: 400;
-    font-size: 22px;
+    .popup__title {
+        font-size: 18px;
+    }
 }

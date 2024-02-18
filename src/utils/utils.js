@@ -36,12 +36,13 @@ export const convertDuration = (duration) => {
         if (!isSavedMovies) {
             localStorage.setItem("foundMovies", JSON.stringify(result));
             localStorage.setItem("moviesSearchQuery", normalizeSearchQuery);
-        } else {
+        } 
+        else {
             localStorage.setItem("savedMoviesSearchQuery", normalizeSearchQuery);
         }
         return result;
     }
-    //сохранение результатов поиска
+    //сохраненные карточки
     export const handleSavedStatus = (savedCards, movieCard) => {
         return savedCards.find((card) => {
             return card.movieId === (movieCard.id || movieCard.movieId);

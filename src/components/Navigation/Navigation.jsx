@@ -3,14 +3,27 @@ import profileLogo from '../../images/profile-logo.svg';
 import React from 'react';
 import NavigationList from '../NavigationList/NavigationList';
 import { NavLink } from "react-router-dom";
-import './Navigation.css'
-// const isActive = false;
+import {useEffect, useState} from "react";
+import './Navigation.css';
 
 function Navigation({isLoggedIn, isMainPage, isNavListPopupOpen, onOpen, onClose}) {
+
+    const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setCurrentWidth(window.innerWidth);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
+
     return (
         <nav className="navigate">
             {isLoggedIn ?
-                ( window.innerWidth <=1279 ? <NavigationList isLoggedIn={isLoggedIn} isMainPage={isMainPage} isNavListPopupOpen={isNavListPopupOpen} onOpen={onOpen} onClose={onClose} /> :
+                ( currentWidth <=1279 ? <NavigationList isLoggedIn={isLoggedIn} isMainPage={isMainPage} isNavListPopupOpen={isNavListPopupOpen} onOpen={onOpen} onClose={onClose} /> :
                 <>
                     <NavLink className={({isActive}) => `navigate__link navigate__link ${isActive ? "navigate__link_active" : ""}`} to="/movies">Фильмы</NavLink>
                     <NavLink className={({isActive}) => `navigate__link navigate__link ${isActive ? "navigate__link_active" : ""}`} to="/saved-movies/">Сохранённые фильмы</NavLink>

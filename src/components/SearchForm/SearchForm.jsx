@@ -17,12 +17,6 @@ function SearchForm({ onSearch, onFilterChange, isFilterOn, isSearching }) {
         ) {
           const savedSearchQuery = localStorage.getItem("moviesSearchQuery");
           setSearchQuery(savedSearchQuery);
-        } else if (
-          location.pathname === "/saved-movies" &&
-          localStorage.getItem("savedMoviesSearchQuery")
-        ) {
-          const savedSearchQuery = localStorage.getItem("savedMoviesSearchQuery");
-          setSearchQuery(savedSearchQuery);
         }
       }, [location.pathname]);
 

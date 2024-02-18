@@ -103,6 +103,10 @@
     background-color: inherit;
 }
 
+.profile__edit-button:hover {
+    cursor: pointer;
+}
+
 .profile__link {
     text-decoration: none;
     margin: 16px 0 0;
@@ -131,7 +135,9 @@
     cursor: pointer;
 }
 
-.profile__submit-button_disabled {
+.profile__submit-button:disabled {
+    opacity: 1;
+    cursor: auto;
     background-color: #F8F8F8;
     color: #C2C2C2;
 }

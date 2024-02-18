@@ -1,5 +1,4 @@
 import SearchForm from '../SearchForm/SearchForm';
-import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import React from 'react';
 import {useEffect, useState, useCallback} from "react";
@@ -31,7 +30,7 @@ const cardsRender = {
     },
   };
 
-function Movies({ savedCards, onSearch, onCardSave, onCardDelete, onLoading, loggedIn }) {
+function Movies({ savedCards, onSearch, onCardSave, onCardDelete, onLoading, isLoggedIn }) {
 
     const [initialCards, setInitialCards] = useState([]);
     const [renderCardsParams, setRenderCardsParams] = useState({});

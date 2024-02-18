@@ -6,7 +6,7 @@ import './SavedMovies.css'
 
 import { handleMovieFiltering, handleMovieSearch } from "../../utils/utils";
 
-function SavedMovies({savedCards, onCardDelete, loggedIn}) {
+function SavedMovies({savedCards, onCardDelete, isLoggedIn}) {
 
     const [cardsForRender, setCardsForRender] = useState([]);
     const [filteredCards, setFilteredCards] = useState([]);
@@ -57,41 +57,8 @@ function SavedMovies({savedCards, onCardDelete, loggedIn}) {
 
       useEffect(() => {
         setCardsNotFound(false);
-        if (
-          localStorage.getItem("savedMoviesSearchQuery") &&
-          localStorage.getItem("isSavedMoviesFilterOn")
-        ) {
-          const filter = JSON.parse(localStorage.getItem("isSavedMoviesFilterOn"));
-          setFilter(filter);
-          const searchQuery = localStorage.getItem("savedMoviesSearchQuery");
-          const found = handleMovieSearch(savedCards, searchQuery, true);
-          setFilteredCards(found);
-          if (!found.length) {
-            setCardsNotFound(true);
-            setCardsForRender(found);
-          } else {
-            const filtered = handleMovieFiltering(found, filter, true);
-            setCardsForRender(filtered);
-            if (!filtered.length) {
-              setCardsNotFound(true);
-            }
-          }
-        } else if (
-          !localStorage.getItem("savedMoviesSearchQuery") &&
-          localStorage.getItem("isSavedMoviesFilterOn")
-        ) {
-          setFilteredCards(savedCards);
-          const filter = JSON.parse(localStorage.getItem("isSavedMoviesFilterOn"));
-          setFilter(filter);
-          const filtered = handleMovieFiltering(savedCards, filter, true);
-          setCardsForRender(filtered);
-          if (!filtered.length) {
-            setCardsNotFound(true);
-          }
-        } else {
-          setCardsForRender(savedCards);
-          setFilteredCards(savedCards);
-        }
+        setCardsForRender(savedCards);
+        setFilteredCards(savedCards);
       }, [savedCards]);
     
 

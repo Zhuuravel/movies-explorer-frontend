@@ -1,7 +1,7 @@
 import React from "react";
 import './MessagePopup.css'
 
-function MessagePopup({ isOpen, message, onClose}) {
+function MessagePopup({ isOpen, message, onClose, isError}) {
 
   return (
     <div className={`popup ${isOpen && " popup_opened"}`}>
@@ -12,7 +12,7 @@ function MessagePopup({ isOpen, message, onClose}) {
           onClick={onClose}
           aria-label="Закрыть"
         ></button>
-        <h2 className="popup__title popup__title_type_error">{message}</h2>
+        <h2 className={`popup__title ${isError && "popup__title_type_error"}`}>{message}</h2>
       </div>
     </div>
   )

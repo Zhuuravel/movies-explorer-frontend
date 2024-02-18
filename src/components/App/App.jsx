@@ -8,7 +8,7 @@ import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import MessagePopup from '../MessagePopup/MessagePopup';
-import {useEffect, useState} from "react";
+import {useEffect, useState, useCallback} from "react";
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import "./App.css";
 import myMainApi from "../../utils/MainApi";
@@ -19,16 +19,18 @@ import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
 
+    const tokenForProtectedRoute = localStorage.getItem('token') //проверка токена для начального значения залогиненности
+
     const [currentUser, setCurrentUser] = useState({}); // текущий польз
-    const [loggedIn, setLoggedIn] = useState(false); //залогиненный
     const [onLoading, setLoading] = useState(false); //загрузка
     const [currentToken, setCurrentToken] = useState(localStorage.getItem('token')); //наличие токена
+    const [isLoggedIn, setLoggedIn] = useState(tokenForProtectedRoute); //залогиненный, сам токен проверяю ниже
     const [userName, setUserName] = useState(''); //имя польза
     const [savedCards, setSavedCards] = useState([]); //сохранённые карточки
     const [isNavListPopupOpen, setNavListPopupOpen] = useState(false); //попап с меню навигации
     const [isOpen, setIsOpen] = useState(false);
     const [message, setMessage] = useState('');
-
+    const [isErrorMessage, setErrorMessage] = useState(true);
 
     const navigate = useNavigate();
 
@@ -93,9 +95,14 @@ function App() {
         setLoading(true);
         myMainApi.updateUserInfo({name, email}, currentToken)
             .then((userData) => {
+                if (userData) {
+                    setMessage("Данные успешно изменены.")
+                    setIsOpen(true);
+                    setErrorMessage(false); 
+                }
                 setLoggedIn(true);
                 setCurrentUser(userData);
-                setUserName(userData.name)
+                setUserName(userData.name);
             })
             .catch((err) => {
                 console.log(err);
@@ -110,33 +117,6 @@ function App() {
             })
     }
 
-    // ПРОВЕРКА ТОКЕНА
-    useEffect(() => {
-        handleTokenCheck();
-    }, [])
-
-    // ПОЛУЧЕНИЕ ДАННЫХ ПРОФИЛЯ
-    useEffect(() => {
-        if (loggedIn && currentToken) {
-            Promise.all([myMainApi.getMyUser(currentToken), myMainApi.getMovies(currentToken)])
-                .then(([userData, cards]) => {
-                    // тут установка данных пользователя
-                    setCurrentUser(userData);
-                    setUserName(userData.name);
-                    // и тут отрисовка сохраненных карточек
-                    setSavedCards(cards)
-                })
-                .catch((err) => {
-                    console.log(err);
-                    err.json()
-                    .then((err) => {
-                        setMessage(err.message);
-                        setIsOpen(true);
-                    })
-                })
-        }
-    }, [loggedIn, currentToken])
-
     const handleTokenCheck = () => {
         if (currentToken) {
             myMainApi.checkToken(currentToken)
@@ -144,7 +124,6 @@ function App() {
                     if (res) {
                         setUserName(res.name);
                         setLoggedIn(true);
-                        navigate('/movies', {replace: true})
                     }
                 })
                 .catch(err => console.log(err));
@@ -227,23 +206,61 @@ function App() {
     const handleMessagePopupClose = () => {
         setMessage("");
         setIsOpen(false);
+        setErrorMessage(true);
     };
+
+    // ПРОВЕРКА ТОКЕНА
+    useEffect(() => {
+        handleTokenCheck();
+    }, [])
+
+    // ПОЛУЧЕНИЕ ДАННЫХ ПРОФИЛЯ
+    useEffect(() => {
+        if (isLoggedIn && currentToken) {
+            Promise.all([myMainApi.getMyUser(currentToken), myMainApi.getMovies(currentToken)])
+                .then(([userData, cards]) => {
+                    // тут установка данных пользователя
+                    setCurrentUser(userData);
+                    setUserName(userData.name);
+                    // и тут отрисовка сохраненных карточек
+                    setSavedCards(cards)
+                })
+                .catch((err) => {
+                    console.log(err);
+                    err.json()
+                    .then((err) => {
+                        setMessage(err.message);
+                        setIsOpen(true);
+                    })
+                })
+        }
+    }, [isLoggedIn, currentToken])
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root">
                 <Routes>
+                    <Route exact
+                        path="/"
+                        element={
+                            <>
+                                <Header isLoggedIn={isLoggedIn} isMainPage isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose}/>
+                                <Main />
+                                <Footer />
+                            </>
+                        }
+                    />
                     <Route
                         path="/*"
                         element={
-                            <NotFound />
+                            <NotFound isLoggedIn={isLoggedIn}/>
                             }
                     />
                     <Route
                         path="/movies"
                         element={
                             <>
-                                <Header isLoggedIn={loggedIn} isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose} />
+                                <Header isLoggedIn={isLoggedIn} isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose} />
                                 <ProtectedRouteElement
                                     element={Movies}
                                     savedCards={savedCards}
@@ -251,7 +268,7 @@ function App() {
                                     onCardSave={handleSaveMovie}
                                     onCardDelete={handleDeleteMovie}
                                     onLoading={onLoading}
-                                    loggedIn={loggedIn}
+                                    isLoggedIn={isLoggedIn}
                                 />
                                 <Footer />
                             </>
@@ -261,12 +278,12 @@ function App() {
                         path="/saved-movies"
                         element={
                             <>
-                                <Header isLoggedIn={loggedIn} isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose} />
+                                <Header isLoggedIn={isLoggedIn} isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose} />
                                 <ProtectedRouteElement
                                     element={SavedMovies}
                                     savedCards={savedCards}
                                     onCardDelete={handleDeleteMovie}
-                                    loggedIn={loggedIn}
+                                    isLoggedIn={isLoggedIn}
                                 />
                                 <Footer />
                             </>
@@ -276,25 +293,15 @@ function App() {
                         path="/profile"
                         element={
                             <>
-                                <Header isLoggedIn={loggedIn} isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose} />
+                                <Header isLoggedIn={isLoggedIn} isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose} />
                                 <ProtectedRouteElement
                                     element={Profile}
                                     title={`Привет, ${userName || ''}`}
                                     onUpdateUser={handleUpdateUserInfo}
                                     onLogout={signOut}
                                     onLoading={onLoading}
-                                    loggedIn={loggedIn}
+                                    isLoggedIn={isLoggedIn}
                                 />
-                            </>
-                        }
-                    />
-                    <Route
-                        path="/"
-                        element={
-                            <>
-                                <Header isLoggedIn={loggedIn} isMainPage isNavListPopupOpen={isNavListPopupOpen} onOpen={handleNavListPopupOpen} onClose={handleNavListPopupClose}/>
-                                <Main />
-                                <Footer />
                             </>
                         }
                     />
@@ -302,7 +309,7 @@ function App() {
                         path="/signin"
                         element={
                             <>
-                                <Header isLoggedIn={loggedIn} withoutNavigate/>
+                                <Header isLoggedIn={isLoggedIn} withoutNavigate/>
                                 <Login onLoading={onLoading} title="Рады видеть!" text="Ещё не зарегистрированы?" link="Регистрация" route="/signup" handleLogin={handleLogin} />
                             </>
                         }
@@ -311,7 +318,7 @@ function App() {
                         path="/signup"
                         element={
                             <>
-                                <Header isLoggedIn={loggedIn} withoutNavigate/>
+                                <Header isLoggedIn={isLoggedIn} withoutNavigate/>
                                 <Register onLoading={onLoading} title="Добро пожаловать!" text="Уже зарегистрированы?" link="Войти" handleRegistration={handleRegistration} route="/signin" />
                             </>
                         }
@@ -321,6 +328,7 @@ function App() {
                     isOpen={isOpen}
                     message={message}
                     onClose={handleMessagePopupClose}
+                    isError={isErrorMessage}
                 />
             </div>
         </CurrentUserContext.Provider>
