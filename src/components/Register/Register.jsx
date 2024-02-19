@@ -19,7 +19,7 @@ function Register({onLoading, title, text, link, handleRegistration, route, isLo
       ) : (  
         <AuthForm 
         title ={title}
-        button={onLoading ? "Регистрация ..." : "Зарегестрироваться"}
+        button={onLoading ? "Регистрация ..." : "Зарегистрироваться"}
         text={text}
         link={link}
         route={route}
