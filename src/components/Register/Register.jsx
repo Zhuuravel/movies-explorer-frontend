@@ -1,10 +1,11 @@
 import React from 'react';
+import { Navigate } from "react-router-dom";
 import useFormValidation from "../../hooks/useFormValidation";
 import AuthForm from '../AuthForm/AuthForm';
 
 const errorInput = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
 
-function Register({onLoading, title, text, link, handleRegistration, route}) {
+function Register({onLoading, title, text, link, handleRegistration, route, isLoggedIn}) {
 
     const { values, errors, isValid, onChange } = useFormValidation();
 
@@ -13,7 +14,9 @@ function Register({onLoading, title, text, link, handleRegistration, route}) {
         handleRegistration(values);
     }
 
-    return (
+    return isLoggedIn ? (
+        <Navigate to="/" replace />
+      ) : (  
         <AuthForm 
         title ={title}
         button={onLoading ? "Регистрация ..." : "Зарегестрироваться"}

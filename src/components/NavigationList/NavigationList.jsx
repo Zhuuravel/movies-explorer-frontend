@@ -2,7 +2,6 @@ import profileLogo from '../../images/profile-logo.svg';
 import React from 'react';
 import './NavigationList.css';
 import { NavLink } from "react-router-dom";
-//isMainPage - ?
 
 function NavigationList({isLoggedIn, isNavListPopupOpen, onOpen, onClose}) {
     return (

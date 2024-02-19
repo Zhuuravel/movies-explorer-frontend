@@ -26,7 +26,7 @@ function Navigation({isLoggedIn, isMainPage, isNavListPopupOpen, onOpen, onClose
                 ( currentWidth <=1279 ? <NavigationList isLoggedIn={isLoggedIn} isMainPage={isMainPage} isNavListPopupOpen={isNavListPopupOpen} onOpen={onOpen} onClose={onClose} /> :
                 <>
                     <NavLink className={({isActive}) => `navigate__link navigate__link ${isActive ? "navigate__link_active" : ""}`} to="/movies">Фильмы</NavLink>
-                    <NavLink className={({isActive}) => `navigate__link navigate__link ${isActive ? "navigate__link_active" : ""}`} to="/saved-movies/">Сохранённые фильмы</NavLink>
+                    <NavLink className={({isActive}) => `navigate__link navigate__link ${isActive ? "navigate__link_active" : ""}`} to="/saved-movies">Сохранённые фильмы</NavLink>
                     <NavLink className={({isActive}) => `navigate__link navigate__link ${isActive ? "navigate__link_active" : ""}`}  to="/profile">
                         <p className="navigate__profile-title">Аккаунт</p>
                         <div className={`navigate__profile ${isMainPage && "navigate__profile_main"}`}>

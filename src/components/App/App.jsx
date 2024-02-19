@@ -8,7 +8,7 @@ import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import MessagePopup from '../MessagePopup/MessagePopup';
-import {useEffect, useState, useCallback} from "react";
+import {useEffect, useState} from "react";
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import "./App.css";
 import myMainApi from "../../utils/MainApi";
@@ -310,7 +310,7 @@ function App() {
                         element={
                             <>
                                 <Header isLoggedIn={isLoggedIn} withoutNavigate/>
-                                <Login onLoading={onLoading} title="Рады видеть!" text="Ещё не зарегистрированы?" link="Регистрация" route="/signup" handleLogin={handleLogin} />
+                                <Login onLoading={onLoading} title="Рады видеть!" text="Ещё не зарегистрированы?" link="Регистрация" route="/signup" handleLogin={handleLogin} isLoggedIn={isLoggedIn} />
                             </>
                         }
                     />
@@ -319,7 +319,7 @@ function App() {
                         element={
                             <>
                                 <Header isLoggedIn={isLoggedIn} withoutNavigate/>
-                                <Register onLoading={onLoading} title="Добро пожаловать!" text="Уже зарегистрированы?" link="Войти" handleRegistration={handleRegistration} route="/signin" />
+                                <Register onLoading={onLoading} title="Добро пожаловать!" text="Уже зарегистрированы?" link="Войти" handleRegistration={handleRegistration} route="/signin" isLoggedIn={isLoggedIn} />
                             </>
                         }
                     />

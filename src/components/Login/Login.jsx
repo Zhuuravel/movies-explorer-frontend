@@ -1,8 +1,9 @@
 import React from 'react';
+import { Navigate } from "react-router-dom";
 import useFormValidation from "../../hooks/useFormValidation";
 import AuthForm from '../AuthForm/AuthForm';
 
-function Login({onLoading, title, text, link, route, handleLogin}) {
+function Login({onLoading, title, text, link, route, handleLogin, isLoggedIn}) {
 
     const { values, errors, isValid, onChange } = useFormValidation();
 
@@ -11,7 +12,9 @@ function Login({onLoading, title, text, link, route, handleLogin}) {
         handleLogin(values);
     }
 
-    return (
+    return isLoggedIn ? (
+        <Navigate to="/" replace />
+      ) : (    
         <AuthForm 
         title ={title}
         button={onLoading ? "Вход ..." : "Войти"}
