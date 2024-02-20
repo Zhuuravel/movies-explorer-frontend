@@ -24,18 +24,29 @@
     line-height: 19px;
 }
 
-.not-found__link {
+.not-found__button {
     text-decoration: none;
-    color: black;
     font-size: 14px;
     font-weight: 400;
     line-height: 17px;
     width: 100%;
+    border: 0;
     padding: 0;
+    background-color: inherit;
 }
 
-.not-found__link:hover {
+.not-found__button:hover {
     opacity: 0.7;
+    cursor: pointer;
+}
+
+.profile__edit-button {
+    font-family: Inter;
+    font-size: 13px;
+    font-weight: 400;
+    border: 0;
+    padding: 0;
+    background-color: inherit;
 }
 
 @media (max-width: 1279px) {

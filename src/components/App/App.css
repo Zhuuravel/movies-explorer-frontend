@@ -1,6 +1,3 @@
-@import '../../vendor/normalize.css';
-@import '../../vendor/inter/inter.css';
-
 .root {
     min-height: 100vh;
     min-width: 320px;

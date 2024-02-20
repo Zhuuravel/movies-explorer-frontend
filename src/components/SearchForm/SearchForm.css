@@ -13,6 +13,11 @@
     box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
 }
 
+.search__error {
+    margin-left: calc((100% - 183px)/2);
+    color: #FF4062;
+}
+
 .search__line {
     margin: 0;
     border: 0;
@@ -41,8 +46,13 @@
     width: 100%;
 }
 
+.search__input::-webkit-search-cancel-button {
+    display: none;
+}
+
 .search__input:focus {
-    outline: 2px solid #F3C1F8;
+    outline: none;
+    text-shadow: #F3C1F8 1px 0 1px;
     font-family: inherit;
 }
 
