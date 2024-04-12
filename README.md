@@ -2,11 +2,11 @@
 
 Сервис, в котором можно найти фильмы по запросу и сохранить в личном кабинете.
 
+Адрес репозитория: https://github.com/Zhuuravel/movies-explorer-frontend
+
 ## Стек технологий
 
 React, HTML5, CSS3, JavaScript, Flexbox, Grid Layout, Адаптивная верстка
-
-Адрес репозитория: https://github.com/Zhuuravel/movies-explorer-frontend
 
 ## Структура проекта
 
